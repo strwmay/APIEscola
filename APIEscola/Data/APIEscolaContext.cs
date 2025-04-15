@@ -1,4 +1,5 @@
 ﻿// Codigo do Arquivo 
+using APIEscola.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,10 @@ namespace APIEscola.Data
         { }
 
         // Propriedade DbSet para a tabela
+        public DbSet<Aluno> Alunos { get; set; } // Representa a tabela de alunos
+        public DbSet<Curso> Cursos { get; set; } // Representa a tabela de cursos
+        public DbSet<Turma> Turmas { get; set; } // Representa a tabela de turmas
+        public DbSet<Matricula> Matriculas { get; set; } // Representa a tabela de matrículas
 
         // Sobrecarga do método OnConfiguring para configurar o modelo a partir da IdentityDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,6 +24,10 @@ namespace APIEscola.Data
             base.OnModelCreating(modelBuilder);
 
             // Configurar a criação de tabelas adicionais
+            modelBuilder.Entity<Aluno>().ToTable("Alunos"); // Define o nome da tabela para a entidade Aluno
+            modelBuilder.Entity<Curso>().ToTable("Cursos"); // Define o nome da tabela para a entidade Curso
+            modelBuilder.Entity<Turma>().ToTable("Turmas"); // Define o nome da tabela para a entidade Turma
+            modelBuilder.Entity<Matricula>().ToTable("Matriculas"); // Define o nome da tabela para a entidade Matricula
         }
     }
 }
